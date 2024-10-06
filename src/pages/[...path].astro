@@ -4,6 +4,7 @@ import { Debug } from 'astro:components';
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {PageQuery, PageQueryVariables} from "../../tina/__generated__/types";
 import TitleComponent from "../components/titleComponent";
+import SampleBlocksSection from "../components/sampleBlocksSection";
 
 interface Props {
   tinaProps: {
@@ -55,6 +56,8 @@ const { tinaProps } = Astro.props;
 <html>
   <body>
   This is the title:
-  <TitleComponent client:tina tinaProps={tinaProps} />
+    <TitleComponent client:tina tinaProps={tinaProps} />
+    <SampleBlocksSection client:tina tinaProps={tinaProps} />
+    <Debug answer={tinaProps}/>
   </body>
 </html>

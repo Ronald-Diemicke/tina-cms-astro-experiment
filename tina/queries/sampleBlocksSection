@@ -1,0 +1,12 @@
+fragment PageParts on Page {
+  __typename
+  title
+  body
+  sampleBlocksSection {
+    __typename
+    ... on PageSampleBlocksSectionSampleBlock {
+      tile
+      text
+    }
+  }
+}

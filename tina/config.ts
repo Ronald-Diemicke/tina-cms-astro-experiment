@@ -1,4 +1,31 @@
 import { defineConfig } from "tinacms";
+import type { Template } from 'tinacms'
+
+const sampleBlock: Template = {
+  name: 'sampleBlock',
+  label: 'Sample Block',
+  ui: {
+    defaultItem: {
+      title: "Here's some text above the other text",
+      text: 'Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.',
+    },
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Text',
+      name: 'text',
+      ui: {
+        component: 'textarea',
+      },
+    },
+  ],
+}
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -44,6 +71,13 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
+          },
+          {
+            type: 'object',
+            list: true,
+            name: 'sampleBlocksSection',
+            label: 'Sections',
+            templates: [sampleBlock],
           },
         ],
         ui: {
