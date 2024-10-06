@@ -1,0 +1,33 @@
+{
+  "name": "tinacms-rpd-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cms": "npx tinacms dev -c \"astro dev --port 8080\"\n",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.7",
+    "@astrojs/react": "^3.6.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro-tina": "^0.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tinacms": "^2.2.8"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.6.8",
+    "@types/node": "^22.7.4",
+    "astro": "^4.15.11",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

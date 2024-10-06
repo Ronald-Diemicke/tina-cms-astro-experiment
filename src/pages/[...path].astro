@@ -1,0 +1,60 @@
+---
+import client from "../../tina/__generated__/client"
+import { Debug } from 'astro:components';
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import {PageQuery, PageQueryVariables} from "../../tina/__generated__/types";
+import TitleComponent from "../components/titleComponent";
+
+interface Props {
+  tinaProps: {
+    variables: PageQueryVariables;
+    data: PageQuery;
+    query: string;
+  };
+}
+
+export async function getStaticPaths() {
+  const pages = await client.queries.pageConnection();
+
+    const pageNames =  pages.data.pageConnection.edges!.map((page) => {
+      //console.log('page',page);
+      return {
+        params: {
+          relativePath: page!.node!._sys.relativePath,
+          path: page!.node!._sys.filename
+        }
+      }
+    });
+
+
+  const pagesData = await Promise.all(
+      pageNames.map(async ({ params }) => {
+        //console.log('pageNames',params);
+        return await client.queries.page({ relativePath: params.relativePath });
+      })
+  );
+
+  return pagesData.map((page) => {
+    //console.log('return', page);
+    return {
+      params: { path: page.data.page._sys.filename },
+      props: { tinaProps: { ...page } },
+    };
+  });
+}
+
+const { tinaProps } = Astro.props;
+
+/*const { data } = useTina({
+  query: directResponse.query,
+  variables: directResponse.variables,
+  data: directResponse.data,
+})*/
+
+---
+<html>
+  <body>
+  This is the title:
+  <TitleComponent client:tina tinaProps={tinaProps} />
+  </body>
+</html>
