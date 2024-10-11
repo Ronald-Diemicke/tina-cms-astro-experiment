@@ -13,7 +13,6 @@ interface Props {
 export default function sampleBlock({ tinaProps }: Props) {
     return (
         <>
-            <div>sample block</div>
             <h2>{tinaProps.title}</h2>
             <h2>{tinaProps.text}</h2>
         </>

@@ -36,6 +36,10 @@ const branch =
 
 export default defineConfig({
   branch,
+  cmsCallback: (cms) => {
+    console.log(cms)
+    return cms
+  },
 
   // Get this from tina.io
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -76,14 +80,32 @@ export default defineConfig({
             type: 'object',
             list: true,
             name: 'sampleBlocksSection',
-            label: 'Sections',
+            label: 'Content Sections',
             templates: [sampleBlock],
           },
         ],
         ui: {
           router: ({ collection, document }) => {
-            console.log('collection', collection);
-            return `${document._sys.filename}`;
+            return `${document._sys.breadcrumbs.join('/')}`;
+          },
+        },
+      },
+      {
+        name: "partials",
+        label: "Partials",
+        path: "content/partials",
+        fields: [
+          {
+            type: 'object',
+            list: true,
+            name: 'sampleBlocksSection',
+            label: 'Content Sections',
+            templates: [sampleBlock],
+          },
+        ],
+        ui: {
+          router: ({ collection, document }) => {
+            return `${document._sys.breadcrumbs.join('/')}`;
           },
         },
       },

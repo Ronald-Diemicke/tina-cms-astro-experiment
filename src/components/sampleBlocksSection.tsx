@@ -1,6 +1,6 @@
-import React from 'react'
-import type {PageQuery, PageQueryVariables} from '../../tina/__generated__/types'
-import SampleBlock from './sampleBlock.tsx'
+import React from 'react';
+import type {PageQuery, PageQueryVariables} from '../../tina/__generated__/types';
+import SampleBlock from './sampleBlock.tsx';
 import { useTina, tinaField } from "tinacms/dist/react";
 
 interface Props {
@@ -22,14 +22,13 @@ export default function sampleBlocksSection ({ tinaProps }: Props) {
 
     return (
         <>
-            <div>block section</div>
             {page.sampleBlocksSection
                 ? page.sampleBlocksSection.map(function (blockData, i) {
                     switch (blockData.__typename) {
                         case 'PageSampleBlocksSectionSampleBlock':
                             return (
                                 <React.Fragment key={i + blockData.__typename}>
-                                    <SampleBlock data-tina-field={tinaField(page, 'sampleBlock')} tinaProps={blockData}/>
+                                    <SampleBlock data-tina-field={tinaField(page, 'sampleBlocksSection')} tinaProps={blockData}/>
                                 </React.Fragment>
                             )
                         default:

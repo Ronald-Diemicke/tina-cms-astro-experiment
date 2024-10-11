@@ -6,7 +6,7 @@
     "cms": "npx tinacms dev -c \"astro dev --port 8080\"\n",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "tinacms build --local --skip-cloud-checks -c \"astro build\"\n",
     "preview": "astro preview"
   },
   "keywords": [],
@@ -16,14 +16,17 @@
   "dependencies": {
     "@astrojs/mdx": "^3.1.7",
     "@astrojs/react": "^3.6.2",
+    "@astrojs/sitemap": "^3.2.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "astro-tina": "^0.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tinacms": "^2.2.8"
+    "tinacms": "^2.2.8",
+    "@gbds/components": "2.1.0",
+    "@gbds/quantum": "~1.4.15-"
   },
   "devDependencies": {
+    "astro-tina": "^0.1.2",
     "@tinacms/cli": "^1.6.8",
     "@types/node": "^22.7.4",
     "astro": "^4.15.11",

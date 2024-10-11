@@ -1,9 +1,5 @@
 ---
-title: The Page Title test
-sampleBlocksSection:
-  - title: A sample block first
-    text: TADA! it works
-    _template: sampleBlock
+title: Root Index
 ---
 
-The Body of the page
+Test

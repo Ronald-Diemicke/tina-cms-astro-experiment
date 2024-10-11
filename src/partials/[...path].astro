@@ -1,0 +1,53 @@
+---
+import client from "../../tina/__generated__/client"
+import { Debug } from 'astro:components';
+import {PartialsQuery, PartialsQueryVariables} from "../../tina/__generated__/types";
+import SampleBlocksSection from "../components/sampleBlocksSection"
+
+interface Props {
+  tinaProps: {
+    variables: PartialsQueryVariables;
+    data: PartialsQuery;
+    query: string;
+  };
+}
+
+export async function getStaticPaths() {
+  const partials = await client.queries.partialsConnection();
+
+    const partialNames =  partials.data.partialsConnection.edges!.map((partial) => {
+      return {
+        params: {
+          relativePath: partial!.node!._sys.relativePath,
+          path: partial!.node!._sys.filename
+        }
+      }
+    });
+
+
+  const partialsData = await Promise.all(
+      partialNames.map(async ({ params }) => {
+        //console.log('pageNames',params);
+        return await client.queries.page({ relativePath: params.relativePath });
+      })
+  );
+
+  return partialsData.map((page) => {
+    //console.log('return', page);
+    //console.log('_sys', page.data.page._sys);
+    let retunobj = {
+      params: { path: page.data.partial._sys.breadcrumbs.join('/') },
+      props: { tinaProps: { ...page } },
+    };
+    //console.log('returnobj', retunobj);
+    return retunobj;
+  });
+}
+
+export const partial = true;
+const { tinaProps } = Astro.props;
+
+---
+
+    <SampleBlocksSection client:tina={import.meta.env.DEV} tinaProps={tinaProps} />
+    <!--Debug answer={tinaProps}/-->
