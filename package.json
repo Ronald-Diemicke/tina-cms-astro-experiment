@@ -21,9 +21,7 @@
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tinacms": "^2.2.8",
-    "@gbds/components": "2.1.0",
-    "@gbds/quantum": "~1.4.15-"
+    "tinacms": "^2.2.8"
   },
   "devDependencies": {
     "astro-tina": "^0.1.2",
