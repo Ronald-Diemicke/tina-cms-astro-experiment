@@ -3,6 +3,7 @@ import client from "../../tina/__generated__/client"
 import { Debug } from 'astro:components';
 import {PartialsQuery, PartialsQueryVariables} from "../../tina/__generated__/types";
 import SampleBlocksSection from "../components/sampleBlocksSection"
+import TitleComponent from "../components/titleComponent";
 
 interface Props {
   tinaProps: {
@@ -49,5 +50,5 @@ const { tinaProps } = Astro.props;
 
 ---
 
-    <SampleBlocksSection client:tina={import.meta.env.DEV} tinaProps={tinaProps} />
+    {import.meta.env.MODE === 'production' ? <SampleBlocksSection tinaProps={tinaProps}/> : <SampleBlocksSection client:tina tinaProps={tinaProps} />}
     <!--Debug answer={tinaProps}/-->

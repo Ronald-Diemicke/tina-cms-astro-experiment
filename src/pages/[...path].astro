@@ -56,7 +56,9 @@ const { tinaProps } = Astro.props;
 
 ---
 <Layout>
-    <TitleComponent client:tina={import.meta.env.DEV} tinaProps={tinaProps} />
-    <SampleBlocksSection client:tina={import.meta.env.DEV} tinaProps={tinaProps} />
-    <!--Debug answer={tinaProps}/-->
+    <div>env: {import.meta.env.MODE}</div>
+    <div>isProd: {import.meta.env.PROD.toString()}</div>
+    {import.meta.env.MODE === 'production' ? <TitleComponent tinaProps={tinaProps}/> : <TitleComponent client:tina tinaProps={tinaProps}  />}
+    {import.meta.env.MODE === 'production' ? <SampleBlocksSection tinaProps={tinaProps}/> : <SampleBlocksSection client:tina tinaProps={tinaProps}  />}
+    <!--Debug answer={client}/-->
 </Layout>
